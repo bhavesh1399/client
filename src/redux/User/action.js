@@ -34,19 +34,17 @@ export const fetchUsersFailure = (error) => {
   };
 };
 
-export const login = (email, password, role, onSuccess) => async (dispatch) => {
+export const login = (email, password, onSuccess) => async (dispatch) => {
   try {
     const { data } = await axios.post(`${API_BASE_URL}/users/login`, {
       email,
       password,
-      role,
     });
     if (!data.success) {
       toast.error(data.message);
       return;
     }
     localStorage.setItem("token", data.data.token);
-    localStorage.setItem("role", data.data.userDetail.role);
     localStorage.setItem("user", JSON.stringify(data.data.userDetail));
     toast.success(data.message);
     onSuccess();

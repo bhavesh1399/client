@@ -17,17 +17,10 @@ export const getColumns = (index) => {
       },
     },
     {
-      Header: "Start Date",
-      accessor: "startDate",
+      Header: "Description",
+      accessor: "description",
       Cell: ({ row }) => {
-        return row?.original?.startDate;
-      },
-    },
-    {
-      Header: "End Date",
-      accessor: "endDate",
-      Cell: ({ row }) => {
-        return row?.original?.endDate;
+        return row?.original?.description;
       },
     },
   ];

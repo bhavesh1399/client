@@ -22,7 +22,7 @@ const Sidebar = () => {
     <>
       <div>
         <div className="sidebar-header">
-          <h3>ProsesWeb</h3>
+          <h3>Hupp Tech</h3>
         </div>
         <div
           className="side-menu"
@@ -39,8 +39,8 @@ const Sidebar = () => {
               </NavItem>
             )}
             <NavItem>
-              <NavLink tag={Link} to={"/subscriptionList"}>
-                Subscription List
+              <NavLink tag={Link} to={"/postList"}>
+                post List
               </NavLink>
             </NavItem>
           </Nav>

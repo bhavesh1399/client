@@ -11,14 +11,13 @@ import {
 } from "reactstrap";
 import { useTable, usePagination } from "react-table";
 import axios from "axios";
-import { getColumns } from "../components/TableColumn/subscriptionColumn";
+import { getColumns } from "../components/TableColumn/PostColumn";
 import Loading from "../components/Loading/Loading";
 
 import Sidebar from "../components/Sidebar/Sidebar";
-import CreateSubscription from "./CreateSubscription";
-const SubscriptionPage = () => {
-  const baseURL =
-    "http://localhost:5000/api/subscription/get-subscription-list";
+import Createpost from "./CreatePost";
+const PostPage = () => {
+  const baseURL = "http://localhost:5000/api/post/get-post-list";
   let [postData, setPostData] = React.useState([]);
   const token = localStorage.getItem("token");
   const [error, setError] = React.useState(null);
@@ -32,7 +31,7 @@ const SubscriptionPage = () => {
   const getList = () => {
     axios.get(baseURL).then((response) => {
       setLoading(true);
-      setPostData(response?.data?.data?.subscriptionList);
+      setPostData(response?.data?.data?.postList);
       setLoading(false);
     });
   };
@@ -71,18 +70,17 @@ const SubscriptionPage = () => {
               <CardHeader className="border-0">
                 <Row className="d-flex justify-content-between">
                   <Col xs="12" className="d-flex justify-content-between px-5">
-                    <h2 className="mb-0">Subscription List</h2>
-                    {role === "admin" && (
-                      <Button color="info" onClick={toggleModal}>
-                        Add Subscription
-                      </Button>
-                    )}
+                    <h2 className="mb-0">Post List</h2>
+
+                    <Button color="info" onClick={toggleModal}>
+                      Add post
+                    </Button>
                   </Col>
                 </Row>
               </CardHeader>
               {isLoading ? (
                 <React.Fragment>
-                  <div className="post_error_loading">
+                  <div>
                     <Loading />
                   </div>
                 </React.Fragment>
@@ -90,7 +88,7 @@ const SubscriptionPage = () => {
                 <React.Fragment>
                   {error ? (
                     <React.Fragment>
-                      <div className="post_error_loading">{error}</div>
+                      <div>{error}</div>
                     </React.Fragment>
                   ) : (
                     <React.Fragment>
@@ -134,9 +132,7 @@ const SubscriptionPage = () => {
                           })}
                         </tbody>
                       </Table>
-                      {postData?.length === 0 && (
-                        <h5>No Subscription found.</h5>
-                      )}
+                      {postData?.length === 0 && <h5>No post found.</h5>}
                     </React.Fragment>
                   )}
                 </React.Fragment>
@@ -144,10 +140,10 @@ const SubscriptionPage = () => {
             </Card>
           </div>
         </Row>
-        <CreateSubscription isOpen={modal} toggleModal={toggleModal} />
+        <Createpost isOpen={modal} toggleModal={toggleModal} />
       </Container>
     </>
   );
 };
 
-export default SubscriptionPage;
+export default PostPage;

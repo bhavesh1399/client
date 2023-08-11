@@ -4,7 +4,7 @@ import { Routes, useNavigate } from "react-router-dom";
 const UserLayout = () => {
   const Navigate = useNavigate();
   useEffect(() => {
-    Navigate("/subscriptionList");
+    Navigate("/postList");
   }, []);
   return (
     <div>

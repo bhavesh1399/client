@@ -8,20 +8,17 @@ const Login = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [selectedRole, setSelectedRole] = useState("");
 
   const dispatch = useDispatch();
   const error = useSelector((state) => state.error);
   const navigateToHome = () => {
-    navigate(selectedRole === "admin" ? "/admin" : "/user");
+    navigate("/user");
   };
 
   const handleLogin = () => {
-    dispatch(login(email, password, selectedRole, navigateToHome));
+    dispatch(login(email, password, navigateToHome));
   };
-  const handleRoleChange = (event) => {
-    setSelectedRole(event.target.value);
-  };
+
   return (
     <div
       className="container mt-5"
@@ -51,24 +48,7 @@ const Login = () => {
           onChange={(e) => setPassword(e.target.value)}
         />
       </div>
-      <div>
-        <div>
-          <input
-            type="radio"
-            value="admin"
-            checked={selectedRole === "admin"}
-            onChange={handleRoleChange}
-          />
-          <span className="font-weight-bold">Admin</span> &nbsp;&nbsp;
-          <input
-            type="radio"
-            value="user"
-            checked={selectedRole === "user"}
-            onChange={handleRoleChange}
-          />
-          <span>User</span>
-        </div>
-      </div>
+
       <h6 className="mt-2">
         Create a new user ?{" "}
         <span>

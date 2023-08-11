@@ -67,7 +67,7 @@ const UserPage = () => {
               </CardHeader>
               {isLoading ? (
                 <React.Fragment>
-                  <div className="post_error_loading">
+                  <div>
                     <Loading />
                   </div>
                 </React.Fragment>
